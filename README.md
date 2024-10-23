@@ -21,8 +21,10 @@ This project aims to finish what VW started. To bring Navigation and music infor
 
 > This project does not aim to render google maps from android auto in the VC. Refer to good folks over in [this issue](https://github.com/jilleb/mib2-toolbox/issues/159)
 
-### Note
-This was tested for a MIB2 High Harman headunit SW train: `MHI2_ER_VWG13_P4521` in a MQB car. 
+### Successfully tested Train Versions
+
+* `MHI2_ER_VWG13_P4521`
+* `MHI2_ER_VWG13_K4525`
 
 Feel free to give feedback for other versions.
 
