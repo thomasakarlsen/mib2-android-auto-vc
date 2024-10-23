@@ -6,15 +6,15 @@ SCRIPTDIR=$( cd -P -- "$(dirname -- "$(command -v -- "$BASE")")" && pwd -P )
 
 export LD_LIBRARY_PATH=/net/mmx/mnt/app/root/lib-target:/net/mmx/eso/lib:/net/mmx/mnt/app/usr/lib:/net/mmx/mnt/app/armle/lib:/net/mmx/mnt/app/armle/lib/dll:/net/mmx/mnt/app/armle/usr/lib
 
-mount -uw /mnt/app
+mount -uw /net/mmx/mnt/app
 
-JAR_TARGET=/mnt/app/eso/hmi/lsd/jars/
+JAR_TARGET=/net/mmx/mnt/app/eso/hmi/lsd/jars/
 mkdir -p ${JAR_TARGET}
 
 cp -v ${SCRIPTDIR}/VCAndroidAuto.jar ${JAR_TARGET}
 
-LSD=/mnt/app/eso/hmi/lsd/lsd.sh
-BU=/mnt/app/eso/hmi/lsd/lsd.sh.VCAndroidAuto.backup
+LSD=/net/mmx/mnt/app/eso/hmi/lsd/lsd.sh
+BU=/net/mmx/mnt/app/eso/hmi/lsd/lsd.sh.VCAndroidAuto.backup
 
 if [ -e $BU ]; then
 mv $BU $LSD
@@ -29,5 +29,5 @@ echo "Patching lsd.sh to run VCAndroidAuto.jar"
 sed -ir 's,^$J9,BOOTCLASSPATH="$BOOTCLASSPATH -Xbootclasspath/p:$BASE_DIR/lsd/jars/VCAndroidAuto.jar"\n$J9,g' $LSD
 fi
 
-mount -ur /mnt/app
+mount -ur /net/mmx/mnt/app
 echo "Done, please restart headunit"
