@@ -2,6 +2,9 @@
 
 This project aims to finish what VW started. To bring Navigation and music information from AndroidAuto to the VW Virtual Cockpit.
 
+> [!NOTE]
+> This project does not support Car Play. Contributions for Car Play support are very much welcome.
+
 ## Features
 - [X] Navigation directions
 - [X] Distance to next maneuver
@@ -15,10 +18,13 @@ This project aims to finish what VW started. To bring Navigation and music infor
 - [ ] Prevent forcing navigation view when navigation starts (I don´t yet know if it is possible)
 - [ ] Imperial units (contributions welcome)
 
+
 > This project does not aim to render google maps from android auto in the VC. Refer to good folks over in [this issue](https://github.com/jilleb/mib2-toolbox/issues/159)
 
 ### Note
-This was tested for SW train: `MHI2_ER_VWG13_P4521`. Feel free to give feedback for other versions.
+This was tested for a MIB2 High Harman headunit SW train: `MHI2_ER_VWG13_P4521` in a MQB car. 
+
+Feel free to give feedback for other versions.
 
 ## Installation
 
