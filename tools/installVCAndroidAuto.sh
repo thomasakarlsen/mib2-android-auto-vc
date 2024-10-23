@@ -14,7 +14,7 @@ mkdir -p ${JAR_TARGET}
 cp -v ${SCRIPTDIR}/VCAndroidAuto.jar ${JAR_TARGET}
 
 LSD=/mnt/app/eso/hmi/lsd/lsd.sh
-BU=/mnt/app/eso/hmi/lsd/lsd.sh.bu
+BU=/mnt/app/eso/hmi/lsd/lsd.sh.VCAndroidAuto.backup
 
 if [ -e $BU ]; then
 mv $BU $LSD

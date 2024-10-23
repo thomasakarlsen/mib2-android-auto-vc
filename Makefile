@@ -34,7 +34,12 @@ all: jar
 jdk:
 	@unzip tools/ibm-java-ws-sdk-pxi3260sr4ifx.zip -d jdk
 
-# Find all .java files (globally)
+
+.PHONY: push
+push: jar
+	@ssh mib sh -l /root/.profile
+	@scp -O $(OUT_DIR)/$(OUT_JAR_FILE) mib:/mnt/app/eso/hmi/lsd/jars/$(OUT_JAR_FILE)
+
 JAVA_FILES := $(shell find $(SRC_DIR) -name '*.java')
 
 # Compile .java files
@@ -49,7 +54,7 @@ compile:
 jar: compile
 	@echo "Packaging into $(OUT_DIR)/$(OUT_JAR_FILE)..."
 	@mkdir -p $(OUT_DIR)
-	@$(JAR) cvf $(OUT_DIR)/$(OUT_JAR_FILE) -C $(BUILD_DIR) .
+	@$(JAR) cvf $(OUT_DIR)/$(OUT_JAR_FILE) -C $(CLASSES_DIR) .
 
 
 # Clean the compiled files and jar
