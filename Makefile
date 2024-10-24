@@ -20,7 +20,7 @@ CLASSPATH = ".:$(LSD_JAR)"
 # Javac options
 JAVAC_OPTS = -source 1.2 -target 1.2 -cp $(CLASSPATH) -d $(CLASSES_DIR)
 
-JDK= ./jdk
+JDK= jdk
 JAVAC = $(JDK)/bin/javac
 JAR = $(JDK)/bin/jar
 
@@ -28,7 +28,7 @@ CFR_JAR = tools/cfr-0.152.jar
 CFT_OPTS = $(LSD_JAR) --previewfeatures false --switchexpression false --removeinnerclasssynthetics false
 
 # Default target
-all: jar
+all: lsd jar
 
 # extract jdk
 jdk:
@@ -43,9 +43,10 @@ push: jar
 JAVA_FILES := $(shell find $(SRC_DIR) -name '*.java')
 
 # Compile .java files
-.PHONY: compile
-compile:
+.PHONY:
+compile: clean jdk
 	@echo "Compiling..."
+	@rm -rf $(CLASSES_DIR)
 	@mkdir -p $(CLASSES_DIR)
 	@$(JAVAC) $(JAVAC_OPTS) $(JAVA_FILES)
 
@@ -60,10 +61,17 @@ jar: compile
 # Clean the compiled files and jar
 .PHONY: clean
 clean:
-	@echo "Cleaning up..."
-	@rm -f $(OUT_JAR_FILE)
+	@echo "Cleaning up build..."
 	@rm -rf $(BUILD_DIR)
 
+
+.PHONY: cleanAll
+cleanAll: clean cleanExtracted
+
+.PHONY: cleanExtracted
+cleanExtracted:
+	@echo "Cleaning up extracted files..."
+	@rm -rf $(LSD_JAR) $(LSD_SOURCE_DIR) $(JDK)
 
 ARGUMENT := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 
