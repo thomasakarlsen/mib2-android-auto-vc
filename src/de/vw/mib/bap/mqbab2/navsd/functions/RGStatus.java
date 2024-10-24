@@ -3,6 +3,7 @@
  */
 package de.vw.mib.bap.mqbab2.navsd.functions;
 
+import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.bap.datatypes.BAPEntity;
 import de.vw.mib.bap.functions.BAPFunctionListener;
 import de.vw.mib.bap.functions.Property;
@@ -60,7 +61,7 @@ public /* final */ class RGStatus
 
     private void setRouteGuidanceStatus(RG_Status_Status rG_Status_Status) {
         AndroidAutoService androidAutoService = this.getAndroidAutoService();
-        System.out.println("AADEBUG: isAndroidAutoRouteGuidanceActive: " + androidAutoService.isAndroidAutoRouteGuidanceActive());
+        MIBLogger.getInstance().debug("isAndroidAutoRouteGuidanceActive: " + androidAutoService.isAndroidAutoRouteGuidanceActive());
         if (androidAutoService.isAndroidAutoRouteGuidanceActive()) {
             rG_Status_Status.rg_Status = 1;
             return;

@@ -76,7 +76,6 @@ public class NavTurn {
         }
 
         if (event == Constants.NAVIGATIONTURNEVENT_OFF_RAMP) {
-            System.out.println("AADEBUG: OFF_RAMP: turnSide = " + turnSide);
             if (turnSide == Constants.NAVIGATIONTURNSIDE_LEFT) {
                 maneuverDescriptor.mainElement = ManeuverDescriptorMainElement.EXIT_LEFT;
                 maneuverDescriptor.direction = ManeuverDescriptorDirection.LEFT;

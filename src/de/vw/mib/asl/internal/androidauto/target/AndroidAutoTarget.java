@@ -3,6 +3,7 @@
  */
 package de.vw.mib.asl.internal.androidauto.target;
 
+import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.asl.api.androidauto.ASLAndroidAutoFactory;
 import de.vw.mib.asl.api.exboxm.ASLExboxmFactory;
 import de.vw.mib.asl.api.exboxm.guidance.ExboxGuidanceManager;
@@ -88,7 +89,7 @@ public class AndroidAutoTarget
 
     public AndroidAutoTarget(GenericEvents genericEvents, int n, String string) {
         super(genericEvents, n, string);
-        System.out.println("AADEBUG: Target AndroidAuto - Initialising Target AndroidAuto (1)! ");
+        MIBLogger.getInstance().trace("Target AndroidAuto - Initialising Target AndroidAuto (1)");
 
         if (this.isTraceEnabled()) {
             this.trace("Target AndroidAuto - Initialising Target AndroidAuto (1)!");
@@ -98,7 +99,7 @@ public class AndroidAutoTarget
 
     public AndroidAutoTarget(GenericEvents genericEvents, String string) {
         super(genericEvents, string);
-        System.out.println("AADEBUG: Target AndroidAuto - Initialising Target AndroidAuto (2)! ");
+        MIBLogger.getInstance().trace("Target AndroidAuto - Initialising Target AndroidAuto (2)!");
 
         if (this.isTraceEnabled()) {
             this.trace("Target AndroidAuto - Initialising Target AndroidAuto (2)!");
@@ -108,7 +109,7 @@ public class AndroidAutoTarget
 
     public AndroidAutoTarget(GenericEvents genericEvents, int n) {
         super(genericEvents, n);
-        System.out.println("AADEBUG: Target AndroidAuto - Initialising Target AndroidAuto (3)! ");
+        MIBLogger.getInstance().trace("Target AndroidAuto - Initialising Target AndroidAuto (3)!");
 
 
         if (this.isTraceEnabled()) {
@@ -144,7 +145,7 @@ public class AndroidAutoTarget
         this.aslHandler.initTimerHandler(this.timerHandler);
         this.requestHandler.initExBoxNavServices(this.exboxGuidanceListenerImpl);
 
-        System.out.println("AADEBUG: initHandler targetId: " + this.getTargetId() + " default: " + this.getDefaultTargetId() + "classifier: " + this.getClassifier() + " subClassifier: " + this.getSubClassifier());
+        MIBLogger.getInstance().info("VCAndroidAuto mod available");
     }
 
 
@@ -163,8 +164,7 @@ public class AndroidAutoTarget
     }
 
     public void initializeDSI() {
-        System.out.println("AADEBUG: initializeDSI()");
-
+        MIBLogger.getInstance().trace("initializeDSI()");
         if (this.isTraceEnabled()) {
             this.trace().append("AndroidAutoTarget").append(".initializeDSI()").log();
         }
@@ -185,15 +185,6 @@ public class AndroidAutoTarget
             this.trace("Target AndroidAuto - service set, now set notification!");
         }
         this.dsiAndroidAuto2.setNotification(this.DSI_ANDROIDAUTO2_ATTR, this.dsiAndroidAuto2Listener);
-
-        boolean c1 = class$org$dsi$ifc$androidauto2$DSIAndroidAuto2Listener != null;
-        boolean c2 = class$org$dsi$ifc$androidauto2$DSIAndroidAuto2Listener != null;
-        System.out.println("AADEBUG: class$org$dsi$ifc$androidauto2$DSIAndroidAuto2: " + c1 + " class$org$dsi$ifc$androidauto2$DSIAndroidAuto2Listener: " + c2);
-
-        boolean c3 = class$de$vw$mib$threads$AsyncServiceFactory != null;
-        boolean c4 = class$de$vw$mib$popup$PopupInformationHandler != null;
-        System.out.println("AADEBUG: class$de$vw$mib$threads$AsyncServiceFactory: " + c3 + " class$de$vw$mib$popup$PopupInformationHandler: " + c4);
-
     }
 
     private void deInitializeDSI() {
@@ -211,7 +202,7 @@ public class AndroidAutoTarget
     }
 
     public void startup() {
-        System.out.println("AADEBUG: startup()");
+        MIBLogger.getInstance().trace("startup()");
         if (this.isTraceEnabled()) {
             this.trace().append("AndroidAutoTarget").append(".startup()").log();
         }
@@ -227,7 +218,7 @@ public class AndroidAutoTarget
     }
 
     public void shutdown() {
-        System.out.println("AADEBUG: shutdown()");
+        MIBLogger.getInstance().trace("shutdown()");
 
         if (this.isTraceEnabled()) {
             this.trace().append("AndroidAutoTarget").append(".shutdown()").log();
@@ -261,7 +252,7 @@ public class AndroidAutoTarget
 
     // @Override
     public void registered(String string, int n) {
-        System.out.println("AADEBUG: registered() trace: " + this.isTraceEnabled());
+        MIBLogger.getInstance().trace("registered()" );
         String string2 = string.intern();
         if (this.isTraceEnabled()) {
             LogMessage logMessage = this.trace();
@@ -310,7 +301,7 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2VideoFocusRequestNotification(int n, int n2) {
-        System.out.println("AADEBUG: dsiAndroidAuto2VideoFocusRequestNotification()" + " n:" + n + " n2: "+ n2);
+        MIBLogger.getInstance().trace("n:" + n + " n2: "+ n2);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#videoFocusRequestNotification called");
         }
@@ -318,7 +309,7 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2VideoAvailable(boolean bl, int n) {
-        System.out.println("AADEBUG: dsiAndroidAuto2VideoAvailable()" + " n:" + n + " bl: " + bl);
+        MIBLogger.getInstance().trace("n:" + n + " bl: " + bl);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#videoAvailable called");
         }
@@ -326,7 +317,7 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2AudioFocusRequestNotification(int n, int n2) {
-        System.out.println("AADEBUG: dsiAndroidAuto2AudioFocusRequestNotification()" + " n:" + n + " n2: "+ n2);
+        MIBLogger.getInstance().trace("n:" + n + " n2: "+ n2);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#audioFocusRequestNotification called");
         }
@@ -334,7 +325,7 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2AudioAvailable(int n, boolean bl, int n2) {
-        System.out.println("AADEBUG: dsiAndroidAuto2AudioAvailable()" + " n:" + n + " bl: " + bl + " n2: "+ n2);
+        MIBLogger.getInstance().trace("n:" + n + " bl: " + bl + " n2: "+ n2);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#audioAvailable called");
         }
@@ -342,7 +333,7 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2VoiceSessionNotification(int n, int n2) {
-        System.out.println("AADEBUG: dsiAndroidAuto2VoiceSessionNotification()" + " n:" + n + " n2: "+ n2);
+        MIBLogger.getInstance().trace("n:" + n + " n2: "+ n2);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#voiceSessionNotification called");
         }
@@ -350,7 +341,7 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2MicrophoneRequestNotification(int n, int n2) {
-        System.out.println("AADEBUG: dsiAndroidAuto2MicrophoneRequestNotification()" + " n:" + n + " n2: "+ n2);
+        MIBLogger.getInstance().trace("n:" + n + " n2: "+ n2);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#microphoneRequestNotification called");
         }
@@ -358,7 +349,7 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2NavFocusRequestNotification(int focus, int valid) {
-        System.out.println("AADEBUG: dsiAndroidAuto2NavFocusRequestNotification()" + " focus:" + focus + " n2: "+ valid);
+        MIBLogger.getInstance().trace("focus:" + focus + " n2: "+ valid);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#navFocusRequestNotification called");
         }
@@ -370,21 +361,21 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2UpdateCallState(CallState[] callStateArray, int n) {
-        System.out.println("AADEBUG: dsiAndroidAuto2UpdateCallState()" + " n:" + n + " callStateArray.length: " + callStateArray.length);
+        MIBLogger.getInstance().trace("n:" + n + " callStateArray.length: " + callStateArray.length);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#updateCallState called");
         }
     }
 
     public void dsiAndroidAuto2UpdateTelephonyState(TelephonyState telephonyState, int n) {
-        System.out.println("AADEBUG: dsiAndroidAuto2UpdateTelephonyState()" + " n:" + n + " telephonyState: " + telephonyState);
+        MIBLogger.getInstance().trace("n:" + n + " telephonyState: " + telephonyState);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#updateTelephonyState called");
         }
     }
 
     public void dsiAndroidAuto2UpdateNowPlayingData(TrackData trackData, int valid) {
-        //System.out.println("AADEBUG: dsiAndroidAuto2UpdateNowPlayingData()" + " trackData: " + trackData + " valid: " + valid);
+        MIBLogger.getInstance().debug("trackData: " + trackData + " valid: " + valid);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#updateNowPlayingData called");
         }
@@ -400,32 +391,26 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2UpdatePlaybackState(PlaybackInfo playbackInfo, int valid) {
-        //System.out.println("AADEBUG: dsiAndroidAuto2UpdatePlaybackState()" + " playbackInfo: " + playbackInfo + " valid: " + valid);
+        MIBLogger.getInstance().trace("playbackInfo: " + playbackInfo + " valid: " + valid);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#updatePlaybackState called");
         }
-
-        if (valid != 1) return;
-
-        TrackInfo.mMetaInfos[0].avdc_audio_current_track_info__filename = playbackInfo.playbackApp;
-        TrackInfo.CURRENT_TRACK_INFO.updateList(TrackInfo.mMetaInfos);
     }
 
     public void dsiAndroidAuto2UpdatePlayposition(int timePosition, int valid) {
-        //System.out.println("AADEBUG: dsiAndroidAuto2UpdatePlayposition()" + " timePosition:" + timePosition + " valid: " + valid);
+        MIBLogger.getInstance().trace("timePosition:" + timePosition + " valid: " + valid);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#updateServiceStatus called");
         }
     }
 
     public void dsiAndroidAuto2UpdateCoverArtUrl(ResourceLocator resourceLocator, int n) {
-        //System.out.println("AADEBUG: dsiAndroidAuto2UpdateCoverArtUrl()" + " resourceLocator: " + resourceLocator + " n: " + n);
+        MIBLogger.getInstance().debug("resourceLocator: " + resourceLocator + " n: " + n);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#updateCoverArtUrl called");
         }
 
         if(n != 1) return;
-        System.out.println("AADEBUG: dsiAndroidAuto2UpdateCoverArtUrl " + resourceLocator.url);
 
         albumCounter++;
 
@@ -458,7 +443,7 @@ public class AndroidAutoTarget
                 fos.write(buffer, 0, length);
             }
 
-            System.out.println("AADEBUG: File copied successfully!");
+            MIBLogger.getInstance().trace("File copied successfully!");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -476,7 +461,7 @@ public class AndroidAutoTarget
 
 
     public void dsiAndroidAuto2UpdateNavigationNextTurnEvent(String road, int turnSide, int event, int turnAngle, int turnNumber, int valid) {
-        System.out.println("AADEBUG: dsiAndroidAuto2UpdateNavigationNextTurnEvent()" + " road: " + road + " turnSide: " + turnSide + " event: " + event + " turnAngle: " + turnAngle + " turnNumber: " + turnNumber + " valid: " + valid);
+        MIBLogger.getInstance().debug(" road: " + road + " turnSide: " + turnSide + " event: " + event + " turnAngle: " + turnAngle + " turnNumber: " + turnNumber + " valid: " + valid);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#updateNavigationNextTurnEvent called");
         }
@@ -487,7 +472,7 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2UpdateNavigationNextTurnDistance(int distanceMeters, int timeSeconds, int valid) {
-        System.out.println("AADEBUG: dsiAndroidAuto2UpdateNavigationNextTurnDistance()" + " distanceMeters: " + distanceMeters + " timeSeconds: " + timeSeconds + " valid: " + valid);
+        MIBLogger.getInstance().trace(" distanceMeters: " + distanceMeters + " timeSeconds: " + timeSeconds + " valid: " + valid);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#updateNavigationNextTurnDistance called");
         }
@@ -498,14 +483,14 @@ public class AndroidAutoTarget
     }
 
     public void dsiAndroidAuto2SetExternalDestination(double d2, double d3, String string, String string2) {
-        System.out.println("AADEBUG: dsiAndroidAuto2SetExternalDestination()" + " d2: " + d2 + " d3: " + d3 + " string: " + string + " string2: " + string2);
+        MIBLogger.getInstance().info(" d2: " + d2 + " d3: " + d3 + " string: " + string + " string2: " + string2);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#setExternalDestination called");
         }
     }
 
     public void dsiAndroidAuto2BluetoothPairingRequest(String string, int n) {
-        System.out.println("AADEBUG: dsiAndroidAuto2BluetoothPairingRequest()" + " string: " + string + " n: " + n);
+        MIBLogger.getInstance().trace(" string: " + string + " n: " + n);
         if (this.isTraceEnabled()) {
             this.trace("TargetAndroidAuto2DSI#bluetoothPairingRequest called");
         }

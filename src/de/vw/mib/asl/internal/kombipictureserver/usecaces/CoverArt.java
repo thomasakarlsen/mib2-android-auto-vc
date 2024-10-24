@@ -3,6 +3,7 @@
  */
 package de.vw.mib.asl.internal.kombipictureserver.usecaces;
 
+import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.asl.internal.kombipictureserver.common.api.bap.audiosd.BapAudioSdDelegate;
 import de.vw.mib.asl.internal.kombipictureserver.common.api.bap.audiosd.BapAudioSdService;
 import de.vw.mib.asl.internal.kombipictureserver.common.api.media.asl.MediaCoverArtDelegate;
@@ -96,7 +97,6 @@ BapAudioSdDelegate {
     }
 
     public void dsiKombiPictureServerIndicationCoverArt(long l, int n, int n2) {
-        System.out.println("AADEBUG: l: " + l + ", n: " + n + ", n2: " + n2);
         boolean bl;
         boolean bl2 = bl = l == 0L && n == 0 && n2 == 255;
         if (bl) {
@@ -141,13 +141,7 @@ BapAudioSdDelegate {
     }
 
     private void _transmitCoverArt(ResourceLocator resourceLocator) {
-        if (resourceLocator != null) {
-            System.out.println("AADEBUG: CoverArt resourceLocator: " + resourceLocator);
-        } else {
-            System.out.println("AADEBUG: CoverArt resourceLocator: null");
-        }
-
-        System.out.println("AADEBUG: getCurrentStationHandleCurrentStationHandle: " + this.getBapAudioSdService().getCurrentStationHandle().getCurrentStationHandleCurrentStationHandle());
+        MIBLogger.getInstance().trace("getCurrentStationHandleCurrentStationHandle: " + this.getBapAudioSdService().getCurrentStationHandle().getCurrentStationHandleCurrentStationHandle());
         int n = resourceLocator != null ? 1 : 2;
         this._transmitCoverArt(this.getBapAudioSdService().getCurrentStationHandle().getCurrentStationHandleCurrentStationHandle(), 0, this.getBapActiveSourceType(), n, resourceLocator);
     }
@@ -162,7 +156,7 @@ BapAudioSdDelegate {
     }
 
     private void _updateCoverArt(boolean bl) {
-        System.out.println("AADEBUG: _updateCoverArt: "+ bl + " activeSource: " + this.getBapActiveSourceType() + " isCoverValid: " + this.getMediaCoverArtService().isCoverValid());
+        MIBLogger.getInstance().trace("bl: "+ bl + " activeSource: " + this.getBapActiveSourceType() + " isCoverValid: " + this.getMediaCoverArtService().isCoverValid());
         if (CoverArt._isActiveSourceSupportsCoverArt(this.getBapActiveSourceType())) {
             if (this.getMediaCoverArtService().isCoverValid()) {
                 this._transmitCurrentCoverArt();
@@ -198,7 +192,6 @@ BapAudioSdDelegate {
 
    // @Override
     public void updateBapAudioSd(BapAudioSdService bapAudioSdService, int n) {
-        System.out.println("AADEBUG: CoverArt.updateBapAudioSd: n: "+ n);
         if (n == 16) {
             this.setBapActiveSourceType(bapAudioSdService.getActiveSource().getActiveSourceSourceType());
         } else if (n == 22 && this.getBapAudioSdService().getCurrentStationHandle().getCurrentStationHandleCurrentStationHandle() != -1 && CoverArt._isActiveSourceSupportsCoverArt(this.getBapActiveSourceType())) {

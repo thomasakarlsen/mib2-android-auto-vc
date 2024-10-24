@@ -1,5 +1,6 @@
 package de.vw.mib.asl.internal.androidauto.target;
 
+import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.asl.api.navbap.ASLNavBAPFactory;
 import de.vw.mib.asl.internal.navigation.api.impl.ext.map.instrumentcluster.ICMapServiceImpl;
 import de.vw.mib.bap.mqbab2.common.api.APIFactory;
@@ -50,7 +51,7 @@ public class NavigationHandler {
     }
 
     public void handleUpdateNextTurnDistanceEvent(int distanceMeters, int timeSeconds) {
-        System.out.println("AADEBUG: distanceMeters: " + distanceMeters + " timeSeconds: " + timeSeconds);
+        MIBLogger.getInstance().trace("distanceMeters: " + distanceMeters + " timeSeconds: " + timeSeconds);
 
         int unit = distanceMeters < 1000 ? 0 : 1;
         int bargraph = 0;
@@ -62,8 +63,6 @@ public class NavigationHandler {
             // set bargraph between 0 and 100
             bargraph = (distanceMeters * 100) / bargraphThresholdMeters;
         }
-
-        //System.out.println("AADEBUG: speed: " + ASLNavigationUtilFactory.getNavigationUtilApi().getPosPosition());
 
         sendManeuver(distanceMeters, timeSeconds);
         ASLNavBAPFactory.getNavBAPApi().updateBapDistanceToNextManeuver(distanceMeters, unit, bargraphOn, bargraph);
@@ -95,7 +94,7 @@ public class NavigationHandler {
 
     private void sendNextManeuverDescriptor() {
         if (nextTurn == null) {
-            System.out.println("AADEBUG: no nextManeuver found");
+            MIBLogger.getInstance().error("no nextManeuver found");
             return;
         }
 
