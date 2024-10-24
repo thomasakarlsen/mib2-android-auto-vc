@@ -3,6 +3,7 @@
  */
 package de.vw.mib.bap.mqbab2.audiosd.functions;
 
+import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.bap.array.timer.Timer;
 import de.vw.mib.bap.array.timer.TimerNotifier;
 import de.vw.mib.bap.datatypes.BAPEntity;
@@ -735,10 +736,10 @@ public class CurrentStationInfo
         if (!this.timer.isRunning()) {
             CurrentStationInfo_Status currentStationInfo_Status = this.dequeueBAPEntity();
             boolean bl = this.computeCurrentStationInfoStatus(currentStationInfo_Status);
-            System.out.println("AADEBUG: CurrenStationInfo: primary: " + currentStationInfo_Status.primaryInformation.toString() + " primary: "+ currentStationInfo_Status.pi_Type + " pi_id: "+ currentStationInfo_Status.pi_Id);
-            System.out.println("AADEBUG: CurrenStationInfo: secondaryInformation: " + currentStationInfo_Status.secondaryInformation + " primary: "+ currentStationInfo_Status.si_Type);
-            System.out.println("AADEBUG: CurrenStationInfo: tertiaryInformation: " + currentStationInfo_Status.tertiaryInformation + " primary: "+ currentStationInfo_Status.ti_Type);
-            System.out.println("AADEBUG: CurrenStationInfo: quaternaryInformation: " + currentStationInfo_Status.quaternaryInformation + " primary: "+ currentStationInfo_Status.qi_Type);
+            MIBLogger.getInstance().trace("primary: " + currentStationInfo_Status.primaryInformation.toString() + " pi_Type: "+ currentStationInfo_Status.pi_Type + " pi_id: "+ currentStationInfo_Status.pi_Id);
+            MIBLogger.getInstance().trace("secondaryInformation: " + currentStationInfo_Status.secondaryInformation + " si_Type: "+ currentStationInfo_Status.si_Type);
+            MIBLogger.getInstance().trace("tertiaryInformation: " + currentStationInfo_Status.tertiaryInformation + " si_Type: "+ currentStationInfo_Status.ti_Type);
+            MIBLogger.getInstance().trace("quaternaryInformation: " + currentStationInfo_Status.quaternaryInformation + " si_Type: "+ currentStationInfo_Status.qi_Type);
 
             this.sendCurrentStationInfo(currentStationInfo_Status, bl);
         } else {

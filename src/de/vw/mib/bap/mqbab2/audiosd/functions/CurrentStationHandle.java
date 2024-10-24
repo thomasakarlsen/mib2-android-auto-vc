@@ -3,6 +3,7 @@
  */
 package de.vw.mib.bap.mqbab2.audiosd.functions;
 
+import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.bap.datatypes.BAPEntity;
 import de.vw.mib.bap.functions.BAPFunctionListener;
 import de.vw.mib.bap.functions.Property;
@@ -299,14 +300,14 @@ TvTunerServiceListener {
 
     private int computeCurrentActiveMediaPosId() {
         MediaService mediaService = this.getMediaService();
-        System.out.println("AADEBUG: computeCurrentActiveMediaPosId: getActiveTrackEntryId: " + mediaService.getActiveTrackInfo().getActiveTrackEntryId() + " getActiveTrackContentType: " + mediaService.getActiveTrackInfo().getActiveTrackContentType());
+        MIBLogger.getInstance().debug("getActiveTrackEntryId: " + mediaService.getActiveTrackInfo().getActiveTrackEntryId() + " getActiveTrackContentType: " + mediaService.getActiveTrackInfo().getActiveTrackContentType());
         int n = this.currentMediaBrowserList != null ? this.currentMediaBrowserList.getBapPosIdOrGenerate(MediaBrowser.createObjectID(mediaService.getActiveTrackInfo().getActiveTrackEntryId(), mediaService.getActiveTrackInfo().getActiveTrackContentType())) : 0;
         return n;
     }
 
     private void setCurrentStationHandleForMedia(CurrentStation_Handle_Status currentStation_Handle_Status) {
         MediaService mediaService = this.getMediaService();
-        System.out.println("AADEBUG: getActiveTrackAbsolutePosition: "+ mediaService.getActiveTrackInfo().getActiveTrackAbsolutePosition());
+        MIBLogger.getInstance().debug("getActiveTrackAbsolutePosition: "+ mediaService.getActiveTrackInfo().getActiveTrackAbsolutePosition());
         int n = this.computeCurrentActiveMediaPosId();
         currentStation_Handle_Status.fsgHandle = n == 0 ? -1 : n;
         currentStation_Handle_Status.fsgHandle_absolutePosition = mediaService.getActiveTrackInfo().getActiveTrackAbsolutePosition() + 1;
@@ -316,7 +317,6 @@ TvTunerServiceListener {
     }
 
     private void setInvalidCurrentStationHandleStatus(CurrentStation_Handle_Status currentStation_Handle_Status) {
-        System.out.println("AADEBUG: CurrentStationHandle: setInvalidCurrentStationHandleStatus");
         currentStation_Handle_Status.fsgHandle = -1;
         currentStation_Handle_Status.fsgHandle_absolutePosition = 0;
         currentStation_Handle_Status.presetList_Ref = 0;
@@ -325,7 +325,7 @@ TvTunerServiceListener {
     }
 
     private void setCurrentStationHandleData(CurrentStation_Handle_Status currentStation_Handle_Status) {
-        System.out.println("AADEBUG: CurrentStationHandle: getCurrentAudioComponent: " + this.getSoundService().getCurrentAudioComponent() + " isBapMediaBrowserAvailable: "+ this.getMediaService().isBapMediaBrowserAvailable());
+        MIBLogger.getInstance().debug("getCurrentAudioComponent: " + this.getSoundService().getCurrentAudioComponent() + " isBapMediaBrowserAvailable: "+ this.getMediaService().isBapMediaBrowserAvailable());
         switch (this.getSoundService().getCurrentAudioComponent()) {
             case 1: {
                 if (this.autoStoreRunning) {
@@ -413,7 +413,7 @@ TvTunerServiceListener {
         CurrentStation_Handle_Status currentStation_Handle_Status = this.dequeueBAPEntity();
         this.setCurrentStationHandleData(currentStation_Handle_Status);
 
-        System.out.println("AADEBUG: CurrentStationHandle: fsgHandle: "+ currentStation_Handle_Status.fsgHandle + " fsgHandle_absolutePosition: "+ currentStation_Handle_Status.fsgHandle_absolutePosition);
+        MIBLogger.getInstance().debug("fsgHandle: "+ currentStation_Handle_Status.fsgHandle + " fsgHandle_absolutePosition: "+ currentStation_Handle_Status.fsgHandle_absolutePosition);
         return currentStation_Handle_Status;
     }
 

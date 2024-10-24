@@ -3,6 +3,7 @@
  */
 package de.vw.mib.bap.mqbab2.navsd.functions;
 
+import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.bap.datatypes.BAPEntity;
 import de.vw.mib.bap.functions.BAPFunctionListener;
 import de.vw.mib.bap.functions.Property;
@@ -177,7 +178,8 @@ ConfigurationServiceListener {
         if (this.getLogger().isTraceEnabled(16)) {
             this.getLogger().trace(16).append("updateNavigationData(NavigationService, int).getNavigationService().getMapSwitchState() = ").append(this.getNavigationService().getMapSwitchState()).log();
         }
-            System.out.println("AADEBUG: n: "+ n +" getMapSwitchState: " + this.getNavigationService().getMapSwitchState());
+        MIBLogger.getInstance().debug("n: "+ n +" getMapSwitchState: " + this.getNavigationService().getMapSwitchState());
+        
         if (n == -2147483643) {
 
             switch (this.getNavigationService().getMapSwitchState()) {

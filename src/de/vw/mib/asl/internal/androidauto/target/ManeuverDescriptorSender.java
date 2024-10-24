@@ -1,5 +1,6 @@
 package de.vw.mib.asl.internal.androidauto.target;
 
+import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.asl.framework.internal.framework.GenericCollector;
 import generated.de.vw.mib.asl.internal.ListManager;
 import org.dsi.ifc.navigation.BapManeuverDescriptor;
@@ -12,7 +13,7 @@ public class ManeuverDescriptorSender {
 
     public void send(BapManeuverDescriptor bapManeuverDescriptor) {
         if (lastManeuverDescriptor != null && lastManeuverDescriptor.toString().equals(bapManeuverDescriptor.toString())) {
-            System.out.println("AADEBUG: same maneuver descriptor. Not sending.");
+            MIBLogger.getInstance().debug("same maneuver descriptor. Not sending.");
             return;
         }
 
