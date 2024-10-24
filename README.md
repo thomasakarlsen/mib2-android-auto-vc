@@ -54,9 +54,11 @@ Other versions may be compatible. Feel free to give it a try and give feedback.
 
 ## Development
 
+Required software: `make`, `java`, `docker`, `unzip`
+
 1. Extract your lsd.jxe from your headunit
 2. copy it to the root of this repository
-3. run `make lsd` to extract your lsd.jxe
+3. run `make` to extract your lsd.jxe and setup the repo
 4. to add a class to the patch run `make extractOriginal the.class.path.ClassName`
 5. edit the class in the src folder
 
