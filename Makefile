@@ -93,11 +93,13 @@ endif
 lsd: lsd.jar lsd_java
 
 lsd_java:
+	@echo "Extracting $(LSD_JAR) to $(LSD_SOURCE_DIR)..."
 	@mkdir -p $(LSD_SOURCE_DIR)
 	@java -jar $(CFR_JAR) $(CFT_OPTS) --outputdir $(LSD_SOURCE_DIR)
 
 # Convert lsd.jxe to lsd.jar
 lsd.jar:
+	@echo "Extracting $(LSD_JXE) to $(LSD_JAR)..."
 	@docker run -it -v $(PWD):/data $(JXE2JAR_IMAGE) bash -c \
 	 	"python2 JXE2JAR.py /data/$(LSD_JXE) /data/$(LSD_JAR) && chown $(shell id -u):$(shell id -g) /data/$(LSD_JAR)"
 
