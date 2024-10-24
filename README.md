@@ -21,12 +21,18 @@ This project aims to finish what VW started. To bring Navigation and music infor
 
 > This project does not aim to render google maps from android auto in the VC. Refer to good folks over in [this issue](https://github.com/jilleb/mib2-toolbox/issues/159)
 
-### Successfully tested Train Versions
+### Tested Train Versions
 
-* `MHI2_ER_VWG13_P4521`
-* `MHI2_ER_VWG13_K4525`
+| Train version         | Compatible |
+|-----------------------|------------|
+| `MHI2_ER_VWG13_P4521` | Y          |
+| `MHI2_ER_VWG13_K4525` | Y          |
+| `MHI2_ER_VWG13_K4525` | Y          |
+| `MHI2_ER_AU43x`       | N          |
+| `MHI2_ER_AUG24`       | N          |
+| `MHI2_ER_AU62x`       | N          |
 
-Feel free to give feedback for other versions.
+Other versions may be compatible. Feel free to give it a try and give feedback.
 
 ## Installation
 
